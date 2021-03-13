@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   Tag.findAll({
       include: [{ model: Product }],
       attributes: {
-            include: [ "product_name", "price", "stock", "category_id" ]
+            include: [ "id", "tag_name" ]
           }
         })
         .then(tagData => {
@@ -59,7 +59,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
-  Tag.update({
+  Tag.update(req.body, {
       where: {
         id: res.params.id
       }

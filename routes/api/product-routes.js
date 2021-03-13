@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 Product.findAll({
       include: [{ model: Category }, { model: Tag }],
       attributes: {
-        include: [ "id", "product_name", "price", "stock", "category_name", "tag_name" ]
+        include: [ "id", "product_name", "price", "stock", "category_id" ]
       }
     })
     .then(productData => {

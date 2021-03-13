@@ -7,9 +7,10 @@ router.get('/', (req, res) => {
   Category.findAll({
       include: [{ model: Product }],
       attributes: {
-        include: [ "id", "product_name", "price", "stock", "category_id" ]
+        include: [ "id", "category_name" ]
       }
-    })
+    
+  })
     .then(allCatergoryData => {
       if (!allCatergoryData) {
         res.status(404).json({ message: 'No category found with that id!'});
@@ -58,7 +59,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  Category.update({
+  Category.update(req.body, {
       where: {
         id: res.params.id
       }
