@@ -30,6 +30,7 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
+        len: [10],
         isNumeric: true,
       },
       category_id: {
