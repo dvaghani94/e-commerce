@@ -45,7 +45,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   try {
     const productData = await Category.create({
-      product_id: req.body.product_id,
+      category_name: req.body.category_name,
     });
 
     res.status(200).json(productData);
