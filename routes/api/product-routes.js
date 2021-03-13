@@ -29,10 +29,13 @@ Product.findAll({
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
-  Product.findbyPk(req.params.id, {
+  Product.findOne({
+    where: {
+      id: req.params.id,
+    },
       include: [{ model: Category }, { model: Tag }],
       attributes: {
-        include: [ "id", "product_name", "price", "stock", "category_name", "tag_name" ]
+        include: [ "id", "product_name", "price", "stock", "category_id" ]
       }
     })
     .then(productData => {

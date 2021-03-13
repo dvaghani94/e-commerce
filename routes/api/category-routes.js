@@ -26,10 +26,13 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  Category.findbyPk(req.params.id, {
+  Category.findOne({
+    where: {
+      id: req.params.id,
+    },
       include: [{ model: Product }],
       attributes: {
-        include: [ "id", "product_name", "price", "stock", "category_id" ]
+        include: [ "id", "category_name" ]
       }
     })
     .then(allCatergoryData => {
@@ -61,7 +64,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   Category.update(req.body, {
       where: {
-        id: res.params.id
+        id: req.params.id
       }
     })
     .then(productData => {
