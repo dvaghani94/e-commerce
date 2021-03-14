@@ -93,6 +93,7 @@ router.put('/:id', (req, res) => {
   Product.update(req.body, {
     where: {
       id: req.params.id,
+      tagIds: req.params.tagIds
     },
   })
     .then((product) => {
@@ -124,7 +125,7 @@ router.put('/:id', (req, res) => {
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      // console.log(err);
+      console.log(err);
       res.status(400).json(err);
     });
 });
